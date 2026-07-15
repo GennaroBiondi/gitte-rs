@@ -62,7 +62,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gitte"
+name = "gitte-rs"
 version = "0.1.0"
 dependencies = [
  "anyhow",
