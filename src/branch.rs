@@ -1,5 +1,4 @@
 use anyhow::{Error, Result, anyhow, bail};
-use git2::ErrorClass::Describe;
 use std::str::FromStr;
 
 #[derive(Debug)]
