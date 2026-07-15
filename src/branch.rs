@@ -46,7 +46,7 @@ impl FromStr for BranchType {
             "copilot" => Ok(Self::Copilot),
             "cursor" => Ok(Self::Cursor),
 
-            "trunk" => Ok(Self::Trunk),
+            "main" => Ok(Self::Trunk),
             "master" => Ok(Self::Master),
             "develop" => Ok(Self::Develop),
 
