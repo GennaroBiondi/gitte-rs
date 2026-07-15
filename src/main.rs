@@ -1,3 +1,4 @@
+mod branch;
 mod commit;
 
 use anyhow::Result;
