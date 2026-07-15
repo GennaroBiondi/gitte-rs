@@ -2,6 +2,8 @@
 name = "gitte-rs"
 version = "0.1.0"
 edition = "2024"
+description = "a rust tool to check if git commits and branches are conventional"
+license = MIT
 
 [dependencies]
 anyhow = "1.0.103"
