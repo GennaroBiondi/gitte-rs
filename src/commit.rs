@@ -60,7 +60,9 @@ impl GitCommit {
             .or(raw_name.find(':'))
             .ok_or_else(|| anyhow!("No scope or colon found!"))?;
 
-        let commit_type: CommitType = raw_name[..commit_type_end].parse()?;
+        let raw_type = &raw_name[..commit_type_end];
+        let commit_type_str = raw_type.strip_suffix("!").unwrap_or(raw_type);
+        let commit_type: CommitType = commit_type_str.parse()?;
 
         let desc_start = raw_name
             .find(": ")
