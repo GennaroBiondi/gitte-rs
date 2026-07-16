@@ -61,8 +61,12 @@ impl GitCommit {
                 bail!("Scope is not valid ascii!");
             }
 
-            if x.chars().any(|c| c == ' ' || c == '\t' || c == '\n') {
+            if x.contains(" \t\n") {
                 bail!("Scope contains either a space, tab, or new line character!");
+            }
+
+            if x.contains("():@") {
+                bail!("Scope contains invalid character");
             }
         }
 
