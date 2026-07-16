@@ -3,6 +3,7 @@ mod commit;
 
 use anyhow::{Result, anyhow};
 use branch::GitBranch;
+use colored::Colorize;
 use commit::GitCommit;
 use git2::Repository;
 
@@ -18,15 +19,21 @@ fn check_commits(repo: &Repository) -> Result<()> {
 
         match summary {
             Some(s) => {
-                println!("  Checking Commit '{}' [{}]", s, &short_oid);
+                println!(
+                    "{}",
+                    format!("  Checking Commit '{}' [{}]", s, &short_oid).purple()
+                );
                 match GitCommit::new(s.to_string()) {
-                    Err(err) => eprintln!("    {}", err),
+                    Err(err) => eprintln!("    {}", err.to_string().red()),
                     _ => {}
                 }
             }
             None => {
-                println!("  Checking Commit 'empty' [{}]", &short_oid);
-                eprintln!("    Commit summary is empty!");
+                println!(
+                    "{}",
+                    format!("  Checking Commit 'empty' [{}]", &short_oid).purple()
+                );
+                eprintln!("    {}", "Commit summary is empty!".red());
             }
         }
     }
@@ -43,12 +50,15 @@ fn check_branches(repo: &Repository) -> Result<()> {
             b.0.name()?
                 .ok_or_else(|| anyhow!("  Branch name is no valid utf-8!"))?;
 
-        println!("  Checking Branch '{}'", branch_name);
+        println!(
+            "{}",
+            format!("  Checking Branch '{}'", branch_name).purple()
+        );
 
         let branch = GitBranch::new(branch_name.to_string());
 
         match branch {
-            Err(err) => eprintln!("    {}", err),
+            Err(err) => eprintln!("    {}", err.to_string().red()),
             _ => {}
         }
     }
@@ -59,10 +69,10 @@ fn check_branches(repo: &Repository) -> Result<()> {
 fn main() -> Result<()> {
     let current_repo = Repository::open(".")?;
 
-    println!("Checking all Repo Commits...");
+    println!("{}", "Checking all Repo Commits...".purple());
     check_commits(&current_repo)?;
 
-    println!("Checking all Repo Branches...");
+    println!("{}", "Checking all Repo Branches...".purple());
     check_branches(&current_repo)?;
 
     Ok(())
