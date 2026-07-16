@@ -19,7 +19,7 @@ impl FromStr for CommitType {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s {
+        match s.to_lowercase().as_str() {
             "fix" => Ok(Self::Fix),
             "feat" => Ok(Self::Feat),
             "build" => Ok(Self::Build),
@@ -30,7 +30,7 @@ impl FromStr for CommitType {
             "refactor" => Ok(Self::Refactor),
             "perf" => Ok(Self::Perf),
             "test" => Ok(Self::Test),
-            _ => bail!("Invalid Commit Type: '{}'", s),
+            _ => bail!("Commit Type not recognized: '{}'", s),
         }
     }
 }

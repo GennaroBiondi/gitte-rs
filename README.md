@@ -46,9 +46,9 @@ in your commit message
 
 .e.g: "type : description", "type(scope) description"
 
-### Invalid Commit Type: [string]
+### Commit Type not recognized: [string]
 ```bash
-Invalid Commit Type: '*'
+Commit Type not recognized: '*'
 ```
 
 means the program couldn't match your commit type with the following:
@@ -86,9 +86,9 @@ means the part before the '/' separator is empty.
 
 .e.g: "/description"
 
-### Invalid Branch Type: [string]
+### Branch Type not recognized: [string]
 ```bash
-Invalid Branch Type: 'foo'
+Branch Type not recognized: '*'
 ```
 
 means the program couldn't match your branch type with the following:
