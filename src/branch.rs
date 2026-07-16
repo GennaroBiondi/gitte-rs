@@ -30,7 +30,7 @@ impl FromStr for BranchType {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s {
+        match s.to_lowercase().as_str() {
             "fix" => Ok(Self::Fix),
             "bugfix" => Ok(Self::Bugfix),
             "hotfix" => Ok(Self::Hotfix),
@@ -47,7 +47,7 @@ impl FromStr for BranchType {
             "master" => Ok(Self::Master),
             "develop" => Ok(Self::Develop),
 
-            _ => bail!("Invalid Branch Type: '{}'", s),
+            _ => bail!("Branch Type not recognized: '{}'", s),
         }
     }
 }
@@ -68,10 +68,6 @@ impl GitBranch {
                 description: String::new(),
                 raw_name: branch_name,
             });
-        }
-
-        if branch_name.chars().any(|x| x.is_uppercase()) {
-            bail!("Found uppercase character in branch name!");
         }
 
         let slash_separator_index = branch_name

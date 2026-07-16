@@ -63,17 +63,11 @@ means the program couldn't match your commit type with the following:
 - "perf" (Perf)
 - "test" (Test)
 
+**Note**:
+This isn't really an error, as the Conventional Commits specification allows custom types,
+and not a specific list
+
 ## Branches
-
-### Found uppercase character in branch name!
-```bash
-Found uppercase character in branch name!
-```
-
-means your branch name contains an uppercase character. Branch names must be lowercase.
-
-.e.g: "Feat/My-Feature", "fix/Bug-Fix"
-
 ### No '/' separator found in branch name!
 ```bash
 No '/' separator found in branch name!
@@ -109,6 +103,10 @@ means the program couldn't match your branch type with the following:
 - "codex" (Codex)
 - "copilot" (Copilot)
 - "cursor" (Cursor)
+
+**Note**:
+This isn't really an error, as the Conventional Branches specification allows custom types,
+and not a specific list
 
 ### No description found in branch name!
 ```bash
