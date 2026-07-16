@@ -21,6 +21,7 @@ pub enum BranchType {
 }
 
 impl BranchType {
+    #[allow(dead_code)]
     pub fn is_trunk(&self) -> bool {
         matches!(self, Self::Trunk | Self::Master | Self::Develop)
     }
@@ -53,6 +54,7 @@ impl FromStr for BranchType {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct GitBranch {
     branch_type: BranchType,
     description: String,

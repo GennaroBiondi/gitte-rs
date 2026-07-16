@@ -24,9 +24,8 @@ fn check_commits(repo: &Repository) -> Result<()> {
                     "{}",
                     format!("  Checking Commit '{}' [{}]", s, &short_oid).purple()
                 );
-                match GitCommit::new(s.to_string()) {
-                    Err(err) => eprintln!("    {}", err.to_string().red()),
-                    _ => {}
+                if let Err(err) = GitCommit::new(s.to_string()) {
+                    eprintln!("    {}", err.to_string().red())
                 }
             }
             None => {
@@ -58,9 +57,8 @@ fn check_branches(repo: &Repository) -> Result<()> {
 
         let branch = GitBranch::new(branch_name.to_string());
 
-        match branch {
-            Err(err) => eprintln!("    {}", err.to_string().red()),
-            _ => {}
+        if let Err(err) = branch {
+            eprintln!("    {}", err.to_string().red())
         }
     }
 
@@ -74,7 +72,7 @@ fn main() -> Result<()> {
         PathBuf::from(".")
     } else {
         let path_str = &args[1];
-        PathBuf::from(PathBuf::from(path_str))
+        PathBuf::from(path_str)
     };
 
     let current_repo =

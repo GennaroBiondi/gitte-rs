@@ -36,6 +36,7 @@ impl FromStr for CommitType {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct GitCommit {
     commit_type: CommitType,
     scope: Option<String>,
