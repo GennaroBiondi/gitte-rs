@@ -22,7 +22,7 @@ fn check_commits(repo: &Repository) -> Result<()> {
             Some(s) => {
                 println!(
                     "{}",
-                    format!("  Checking Commit '{}' [{}]", s, &short_oid).purple()
+                    format!("  Checking Commit '{}' [{}]", s, short_oid).purple()
                 );
                 if let Err(err) = GitCommit::new(s.to_string()) {
                     eprintln!("    {}", err.to_string().red())
@@ -31,7 +31,7 @@ fn check_commits(repo: &Repository) -> Result<()> {
             None => {
                 println!(
                     "{}",
-                    format!("  Checking Commit 'empty' [{}]", &short_oid).purple()
+                    format!("  Checking Commit 'empty' [{}]", short_oid).purple()
                 );
                 eprintln!("    {}", "Commit summary is empty!".red());
             }
