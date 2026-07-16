@@ -1,11 +1,15 @@
 mod branch;
 mod commit;
 
-use anyhow::{Result, anyhow};
+use anyhow::{Context, Result, anyhow};
 use branch::GitBranch;
 use colored::Colorize;
 use commit::GitCommit;
 use git2::Repository;
+use std::{
+    env::{self, args},
+    path::PathBuf,
+};
 
 fn check_commits(repo: &Repository) -> Result<()> {
     let mut rev_walk = repo.revwalk()?;
@@ -67,7 +71,17 @@ fn check_branches(repo: &Repository) -> Result<()> {
 }
 
 fn main() -> Result<()> {
-    let current_repo = Repository::open(".")?;
+    let args: Vec<String> = env::args().collect();
+
+    let repo_path = if args.len() < 2 {
+        PathBuf::from(".")
+    } else {
+        let path_str = &args[1];
+        PathBuf::from(PathBuf::from(path_str))
+    };
+
+    let current_repo =
+        Repository::open(repo_path).context("No Repository found in current directory!")?;
 
     println!("{}", "Checking all Repo Commits...".purple());
     check_commits(&current_repo)?;
