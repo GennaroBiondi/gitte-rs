@@ -1,5 +1,5 @@
 use anyhow::{Error, Result, anyhow, bail};
-use std::str::FromStr;
+use std::{ascii::AsciiExt, str::FromStr};
 
 #[derive(Debug)]
 pub enum CommitType {
@@ -55,6 +55,16 @@ impl GitCommit {
             (None, None) => None,
             _ => bail!("Mismatched parentheses in scope!"),
         };
+
+        if let Some(ref x) = scope {
+            if !x.is_ascii() {
+                bail!("Scope is not valid ascii!");
+            }
+
+            if x.chars().any(|c| c == ' ' || c == '\t' || c == '\n') {
+                bail!("Scope contains either a space, tab, or new line character!");
+            }
+        }
 
         let commit_type_end = open_paren
             .or(raw_name.find(':'))
