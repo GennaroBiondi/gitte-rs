@@ -61,7 +61,18 @@ pub struct GitBranch {
 
 impl GitBranch {
     pub fn new(branch_name: String) -> Result<Self> {
-        // if raw_name in ("main", "master", "develop"):
+        if branch_name.chars().any(|c| c == '_') {
+            bail!("found underscore in branch name!");
+        }
+
+        if branch_name.starts_with('-') || branch_name.ends_with('-') {
+            bail!("found trailing hyphens in branch name!");
+        }
+
+        if !branch_name.is_ascii() {
+            bail!("branch name is not valid ascii!");
+        }
+
         if matches!(branch_name.as_str(), "main" | "master" | "develop") {
             return Ok(Self {
                 branch_type: branch_name.parse()?,
