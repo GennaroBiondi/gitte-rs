@@ -62,8 +62,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "gitte-rs"
-version = "0.1.0"
+name = "gitters"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "git2",
