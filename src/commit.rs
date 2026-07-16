@@ -1,5 +1,5 @@
 use anyhow::{Error, Result, anyhow, bail};
-use std::{ascii::AsciiExt, str::FromStr};
+use std::str::FromStr;
 
 #[derive(Debug)]
 pub enum CommitType {
