@@ -55,6 +55,33 @@ in your commit message
 
 .e.g: "type : description", "type(scope) description"
 
+### Scope is not valid ascii!
+```bash
+Scope is not valid ascii!
+```
+
+means your commit scope contains non-ASCII characters.
+
+.e.g: "fix(ümlaut): description"
+
+### Scope contains either a space, tab, or new line character!
+```bash
+Scope contains either a space, tab, or new line character!
+```
+
+means your commit scope contains whitespace.
+
+.e.g: "fix(my scope): description"
+
+### Scope contains invalid character
+```bash
+Scope contains invalid character
+```
+
+means your commit scope contains one of the following: `(`, `)`, `:`, `@`
+
+.e.g: "fix(my(scope): description", "fix(my@scope): description"
+
 ### Commit Type not recognized: [string]
 ```bash
 Commit Type not recognized: '*'
@@ -125,3 +152,39 @@ No description found in branch name!
 means there's nothing after the '/' separator.
 
 .e.g: "feat/", "chore/"
+
+### Found uppercase character in branch name description!
+```bash
+Found uppercase character in branch name description!
+```
+
+means your branch description contains an uppercase character. Descriptions must be lowercase.
+
+.e.g: "feat/My-Feature", "fix/Bug-Fix"
+
+### Found underscore in branch name description!
+```bash
+Found underscore in branch name description!
+```
+
+means your branch description contains an underscore. Use hyphens instead.
+
+.e.g: "feat/my_feature", "fix/bug_fix"
+
+### Found leading or trailing hyphen in branch name description!
+```bash
+Found leading or trailing hyphen in branch name description!
+```
+
+means your branch description starts or ends with a hyphen.
+
+.e.g: "feat/-my-feature", "feat/my-feature-"
+
+### Found consecutive hyphens in branch name description!
+```bash
+Found consecutive hyphens in branch name description!
+```
+
+means your branch description contains two or more consecutive hyphens.
+
+.e.g: "feat/my--feature", "fix/bug--fix"
