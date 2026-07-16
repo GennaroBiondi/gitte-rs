@@ -1,4 +1,7 @@
 # gitte.rs
+[![Crates.io](https://img.shields.io/crates/v/gitters)](https://crates.io/crates/gitters)
+[![License](https://img.shields.io/crates/l/gitters)](https://github.com/GennaroBiondi/gitte-rs/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/crates/d/gitters)](https://crates.io/crates/gitters)
 
 Rust tool to quickly check if git commits and branches follow common conventions
 (successor of [glitter](https://github.com/GennaroBiondi/glitter))
