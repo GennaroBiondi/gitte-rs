@@ -5,10 +5,16 @@ Rust tool to quickly check if git commits and branches follow common conventions
 
 # Usage
 
-when run, the program will automatically check every git commit and git branch in the repository in the current directory.
+when run without arguments, the program will automatically check every git commit
+and git branch in the repository in the current directory.
 
 ```bash
 gitte
+```
+
+the program also supports a path that points to the directory of the repo as an argument
+```bash
+gitte ~/my_repo
 ```
 
 if any commits or branches don't follow the specification of [Conventional Commits](https://www.conventionalcommits.org/)
