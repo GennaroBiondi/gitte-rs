@@ -63,14 +63,6 @@ pub struct GitBranch {
 
 impl GitBranch {
     pub fn new(branch_name: String) -> Result<Self> {
-        if branch_name.chars().any(|c| c == '_') {
-            bail!("found underscore in branch name!");
-        }
-
-        if branch_name.starts_with('-') || branch_name.ends_with('-') {
-            bail!("found trailing hyphens in branch name!");
-        }
-
         if !branch_name.is_ascii() {
             bail!("branch name is not valid ascii!");
         }
@@ -99,6 +91,22 @@ impl GitBranch {
 
         if description.is_empty() {
             bail!("No description found in branch name!");
+        }
+
+        if description.chars().any(|c| c.is_uppercase()) {
+            bail!("Found uppercase character in branch name description!");
+        }
+
+        if description.chars().any(|c| c == '_') {
+            bail!("Found underscore in branch name description!");
+        }
+
+        if description.starts_with('-') || description.ends_with('-') {
+            bail!("Found leading or trailing hyphen in branch name description!");
+        }
+
+        if description.contains("--") {
+            bail!("Found consecutive hyphens in branch name description!");
         }
 
         let description = description.to_string();
