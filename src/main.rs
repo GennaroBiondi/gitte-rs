@@ -6,10 +6,7 @@ use branch::GitBranch;
 use colored::Colorize;
 use commit::GitCommit;
 use git2::Repository;
-use std::{
-    env::{self, args},
-    path::PathBuf,
-};
+use std::{env, path::PathBuf};
 
 fn check_commits(repo: &Repository) -> Result<()> {
     let mut rev_walk = repo.revwalk()?;
